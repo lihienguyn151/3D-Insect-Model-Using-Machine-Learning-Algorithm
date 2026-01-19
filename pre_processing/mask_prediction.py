@@ -4,6 +4,7 @@ import logging
 import numpy as np
 import torch
 import torch.nn.functional as F
+import cv2
 from PIL import Image
 from tqdm import tqdm
 
@@ -11,9 +12,10 @@ from unet.utils import BasicDataset
 from unet.model import UNet
 
 #Parameters
-MODEL_PATH = "./checkpoints/checkpoint_epoch100_FT2.pth"
-IMAGE_DIR  = "./images"
-MASK_DIR   = "./masks"
+MODEL_PATH = "./checkpoints/checkpoint_epoch100_FT4.pth"
+IMAGE_DIR = "./images"
+MASK_DIR = "./masks"
+RESULT_DIR = "./results"
 
 SCALE_FACTOR = 0.5
 MASK_THRESHOLD = 0.5
@@ -77,4 +79,18 @@ if __name__ == "__main__":
         out_path = os.path.join(MASK_DIR, out_name)
         mask_img.save(out_path)
 
-    logging.info("<*> All masks saved successfully!")
+        #Combine mask in image respectively
+        img = cv2.imread(img_path)
+        mask = cv2.imread(out_path, cv2.IMREAD_GRAYSCALE)
+
+        img2 = np.zeros_like(img)
+        img2[:, :, 0] = mask
+        img2[:, :, 1] = mask
+        img2[:, :, 2] = mask
+
+        result = cv2.bitwise_and(img, img2)
+        result_name = os.path.splitext(fname)[0] + "_processed.png"
+        result_path = os.path.join(RESULT_DIR, result_name)
+        cv2.imwrite(result_path, result)
+
+    logging.info("<*> All prediction images saved successfully!")

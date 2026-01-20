@@ -45,9 +45,47 @@ pip install numpy
 pip install tqdm
 ```
 
+*(a2) U-Net Architecture*
+
+This setup consists of four main source code for training task like model, utils, evaluation and train. The U-Net Architecture that contains VGG16 layers as the encoder is written in *model.py*. In this file, the initial number of feature channel can be changed for some test-case, 32 or 64.
+
+The *utils.py* file gives some function for dataset creation, image pre-processing and dice loss function computation. The evaluation code is utilized to compute the performance metrics, such as DsC, IoU, evaluation loss and general accuracy.
+
+Some hyper-parameters can be fine-tunned in the main function of *train.py* file. The parameters that are used in my source code, are gained the default value: 1e-4 for the learning rate, 0.1 for validation sample size, 16 for batch size, and true for bilinear and amp. When training, this source integrates with the others to train the U-Net model.
+
+Moreover, the *prediction.py* file can be used to test the model by checkpoints loading, image importation and mask prediction.
+
+The following section presents the folder structure for run the training scripts:
+
+```text
+pre_processing/
+├── unet/
+│   ├── evaluation.py          
+│   ├── model.py
+│   ├── prediction.py
+│   ├── train.py
+│   └── utils.py        
+└── mask_prediction.py
+```
+
+Some libraries and packages must be installed in the configuration environment by running this script:
+
+```bash
+pip3 install sympy==1.12
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+pip install matplotlib
+pip install numpy
+pip install Pillow
+pip install tqdm
+pip install wandb
+pip install albumentations
+```
+
+However, these setting aren't necessary when using my Google Colaboratory for training model. This can be accessed in [U-Net+VGG16 Notebook](https://colab.research.google.com/drive/1eLcUQTXZGMWJKd_MCuSoJKFX82PbEG03?usp=sharing).
+
 Subsequently, the setting modality to predict the mask using checkpoint file is denoted:
 
-*(a2) Mask Prediction*
+*(a3) Mask Prediction*
 
 The workflow begin with the reading task to "images" and "masks" folder. From the "checkpoints" folder, a fully trained model can be imported in this program. After completely loading, a binary mask array is predicted from each images so that the mask can be rendered for the input dataset.  
 

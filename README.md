@@ -112,4 +112,6 @@ pre_processing/
 └── mask_prediction.py
 ```
 
-Therefore, the machine learning libraries are necessary to load the U-Net model and trained weights.
+Therefore, the machine learning libraries are necessary to load the U-Net model and trained weights. The example result can be illustrated in the below image.
+
+![Display the mask prediction log for pre-processing image folder.](thumbnails/UNet_Mask_Prediction_Results.png)

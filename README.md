@@ -27,15 +27,15 @@ This folder is utilized for storing the pre-processing source code that contains
 
 To create the ground-truth masks as well as the datasets removed background, firstly, AnyLabeling is utilized to draw the polygonal label that covers fully the insect body so that the label file can be rendered. Using the binary mask with the respectively image, a target image is exported that concentrates on the interest object.
 
-The folder structure is presented in this following section:
+📂The folder structure is presented in this following section:
 
-|-- [images]
-
-|-- [labels]
-
-|-- [masks]
-
-|-- **masking_algorithm.py**
+```text
+pre_processing/
+├── images/
+├── labels/
+├── masks/       
+└── masking_algorithm.py
+```
 
 Some necessary packages must be installed to run this program. This following present the packages for execution:
 
@@ -55,10 +55,15 @@ Some hyper-parameters can be fine-tunned in the main function of *train.py* file
 
 Moreover, the *prediction.py* file can be used to test the model by checkpoints loading, image importation and mask prediction.
 
-The following section presents the folder structure for run the training scripts:
+📂The following section presents the folder structure for run the training scripts:
 
 ```text
 pre_processing/
+├── checkpoints/
+├── images/
+├── masks/
+├── metrics/
+├── test/
 ├── unet/
 │   ├── evaluation.py          
 │   ├── model.py
@@ -87,5 +92,24 @@ Subsequently, the setting modality to predict the mask using checkpoint file is 
 
 *(a3) Mask Prediction*
 
-The workflow begin with the reading task to "images" and "masks" folder. From the "checkpoints" folder, a fully trained model can be imported in this program. After completely loading, a binary mask array is predicted from each images so that the mask can be rendered for the input dataset.  
+The workflow begins with the reading task to "images" and "masks" folder. From the "checkpoints" folder, a fully trained model can be imported in this program. After completely loading, a binary mask array is predicted from each images so that the mask can be rendered for the input dataset. This source supports for both CPU and GPU Cuda. 
 
+📂The data structure that is utilized by the automatically mask prediction using U-Net model is:
+
+```text
+pre_processing/
+├── checkpoints/
+│   └── checkpoint_epoch100_FT4.pth
+├── images/
+├── masks/
+├── results/
+├── unet/
+│   ├── evaluation.py          
+│   ├── model.py
+│   ├── prediction.py
+│   ├── train.py
+│   └── utils.py        
+└── mask_prediction.py
+```
+
+Therefore, the machine learning libraries are necessary to load the U-Net model and trained weights.

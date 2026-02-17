@@ -164,3 +164,6 @@ pip install pyopengltk
 pip install trimesh
 ```
 
+The data in this GitHub project is empty because of its storage size. Therefore, the data can be downloaded from the link to Google Drive by [Data GUI Source](https://drive.google.com/drive/folders/1rhjf3xj9vMfsuoxEiGRfNct4RNg5isVb?usp=drive_link).
+
+When these settings finish, this source operates the program and the *Introduction* is displayed in the center of desktop. Using navigation bar under the header, the segmentation and visualization functions can be implemented for particular tasks. The following section shows the interface of three forms:

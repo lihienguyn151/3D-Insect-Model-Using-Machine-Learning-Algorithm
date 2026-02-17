@@ -168,3 +168,18 @@ The data in this GitHub project is empty because of its storage size. Therefore,
 
 When these settings finish, this source operates the program and the *Introduction* is displayed in the center of desktop. Using navigation bar under the header, the *Segmentation* and *Visualization* functions can be implemented for particular tasks. The following section shows the interface of three forms:
 
+*(b1) Introduction Form*
+
+![Introduction form interface.](thumbnails/GUI_Layout.png)
+
+*(b2) Segmentation Form*
+
+This form supports for EDOF image segmentation task with two options: one-image and folder-image. The image folder segmentation can be accelerated the image pre-processing in insect modeling workflow. This image denotes two segmentation functions and the general interface.
+
+![Segmentation form interface.](thumbnails/GUI_Segmentation.png)
+
+*(b3) Visualization Form*
+
+This form is designed for 3D Insect-NeRF models that are reconstructed by using Neural Radiance Field and Instant-NGP framework. The model can be displayed in the first-left frame for visualization and dynamic interaction through the menu button.
+
+![Visualization form interface.](thumbnails/GUI_Visualization.png)

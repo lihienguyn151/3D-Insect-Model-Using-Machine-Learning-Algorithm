@@ -13,6 +13,7 @@ This is the source code for my graduation thesis. My name is Nguyen, an 4-year s
 📌**TABLE OF CONTENTS**
 
 (a) Pre-Processing Image
+
 (b) Graphical User Interface Source
 
 ---
@@ -146,5 +147,20 @@ GUI_source/
 ├── MainProgram.py
 ├── SegmentationForm.py
 └── VisualizationForm.py
+```
+
+The virtual environment must be installed these Python packages:
+
+```bash
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+pip install matplotlib
+pip install numpy
+pip install Pillow
+pip install tqdm
+pip install albumentations
+pip install tk
+pip install pyopengl
+pip install pyopengltk
+pip install trimesh
 ```
 

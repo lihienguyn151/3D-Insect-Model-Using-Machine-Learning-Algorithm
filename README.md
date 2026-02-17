@@ -13,6 +13,7 @@ This is the source code for my graduation thesis. My name is Nguyen, an 4-year s
 📌**TABLE OF CONTENTS**
 
 (a) Pre-Processing Image
+(b) Graphical User Interface Source
 
 ---
 💫**Pre-Processing Image**
@@ -115,3 +116,35 @@ pre_processing/
 Therefore, the machine learning libraries are necessary to load the U-Net model and trained weights. The example result can be illustrated in the below image.
 
 ![Display the mask prediction log for pre-processing image folder.](thumbnails/UNet_Mask_Prediction_Results.png)
+
+---
+💫**Graphical User Interface Source**
+
+This source code illustrates the image processing and model visualization program with the interface. These are two tasks that this source supports for depth research purposes in entomology.
+
+📂This consists of three files of interface class, the segmentation architecture, *data* folder and processing scripts. The source structure is presented in following section:
+
+```text
+GUI_source/
+├── data/
+│   ├── checkpoints/
+│   │   └── checkpoint_epoch100_FT4.pth
+│   ├── images/
+│   ├── models/
+│   ├── output/
+│   └── results/
+├── images/
+├── scripts/
+│   └── ObjectSegmentation.py
+├── unet/
+│   ├── evaluation.py          
+│   ├── model.py
+│   ├── prediction.py
+│   ├── train.py
+│   └── utils.py        
+├── IntroductionForm.py
+├── MainProgram.py
+├── SegmentationForm.py
+└── VisualizationForm.py
+```
+

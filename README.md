@@ -162,6 +162,8 @@ pip install tk
 pip install pyopengl
 pip install pyopengltk
 pip install trimesh
+pip install pyvista
+pip install pyvistaqt
 ```
 
 The data in this GitHub project is empty because of its storage size. Therefore, the data can be downloaded from the link to Google Drive by [Data GUI Source](https://drive.google.com/drive/folders/1rhjf3xj9vMfsuoxEiGRfNct4RNg5isVb?usp=drive_link).

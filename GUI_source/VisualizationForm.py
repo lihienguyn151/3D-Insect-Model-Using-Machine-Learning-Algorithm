@@ -74,9 +74,21 @@ class VisualizationForm:
         self.btnVisualize.place(x = 243, y = 3)
 
         #Main content
-        #1. Model view option
-        self.mbModelView = tk.Menubutton(self.form, text = "Chọn mô hình", font = ("Times New Roman", 13, "bold"), bg = "#ffffff", fg = "#833812", relief = "solid", borderwidth = 1)
-        self.mbModelView.place(x = 10, y = 148)
+        self.lbVisualize = tk.Label(self.form, text = "Khung hiển thị mô hình 3D", font = ("Times New Roman", 14, "bold"), bg = "#fff6e5", fg = "#833812")
+        self.lbVisualize.place(x = 20, y = 152)
+
+        self.fVisualize = tk.Frame(self.form, width = 800, height = 467, relief = "solid", borderwidth = 1)
+        self.fVisualize.place(x = 10, y = 183)
+
+        self.lbManeuver = tk.Label(self.form, text = "Bảng chức năng", font = ("Times New Roman", 14, "bold"), bg = "#fff6e5", fg = "#833812")
+        self.lbManeuver.place(x = 835, y = 152)
+
+        self.fManeuver = tk.Frame(self.form, width = 365, height = 467, relief = "solid", borderwidth = 1, bg = "#ffffff")
+        self.fManeuver.place(x = 825, y = 183)
+        self.vrSample = None
+
+        self.mbModelView = tk.Menubutton(self.fManeuver, text = "Chọn mô hình", font = ("Times New Roman", 13, "bold"), width = 35, height = 1, bg = "#fffbdf", fg = "#833812", relief = "raised")
+        self.mbModelView.place(x = 18, y = 20)
 
         self.mnuModelView = tk.Menu(self.mbModelView, tearoff = 0)
         self.mbModelView.config(menu = self.mnuModelView)
@@ -90,22 +102,11 @@ class VisualizationForm:
         self.mnuModelView.add_command(label = "Hypomeces squamosus", font = ("Times New Roman", 12), command = self.mnuSample07_Click)
         self.mnuModelView.add_command(label = "Pyrrhocoris apterus", font = ("Times New Roman", 12), command = self.mnuSample08_Click)
 
-        #2. Visualize 3D model
-        self.fVisualize = tk.Frame(self.form, width = 800, height = 467, relief = "solid", borderwidth = 1)
-        self.fVisualize.place(x = 10, y = 183)
-
-        self.lbManeuver = tk.Label(self.form, text = "Bảng chức năng", font = ("Times New Roman", 14, "bold"), bg = "#fff6e5", fg = "#833812")
-        self.lbManeuver.place(x = 835, y = 152)
-
-        self.fManeuver = tk.Frame(self.form, width = 365, height = 467, relief = "solid", borderwidth = 1, bg = "#ffffff")
-        self.fManeuver.place(x = 825, y = 183)
-        self.vrSample = None
-
         self.btnOpen = tk.Button(self.fManeuver, text = "Mở tập tin", font = ("Times New Roman", 13, "bold"), width = 32, height = 1, bg = "#fffbdf", fg = "#833812", command = self.btnOpen_Click)
-        self.btnOpen.place(x = 17, y = 20)
+        self.btnOpen.place(x = 17, y = 65)
 
         self.btnReset = tk.Button(self.fManeuver, text = "Đặt lại", font = ("Times New Roman", 13, "bold"), width = 32, height = 1, bg = "#fffbdf", fg = "#833812", state = "disabled", command = self.btnReset_Click)
-        self.btnReset.place(x = 17, y = 70)
+        self.btnReset.place(x = 17, y = 115)
 
         #Footer
         self.lfFooter = tk.LabelFrame(self.form, width = 1200, height = 40)

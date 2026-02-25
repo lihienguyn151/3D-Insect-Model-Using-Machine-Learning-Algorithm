@@ -13,6 +13,10 @@ from pyopengltk import OpenGLFrame
 from OpenGL.GL import *
 import trimesh
 
+import pyvista as pv
+import numpy as np
+from pyvistaqt import BackgroundPlotter
+
 #Function settings
 class Viewer(OpenGLFrame):
     def __init__(self, parent, mesh, **kwargs):
@@ -79,13 +83,16 @@ class VisualizationForm:
 
         self.fVisualize = tk.Frame(self.form, width = 800, height = 467, relief = "solid", borderwidth = 1)
         self.fVisualize.place(x = 10, y = 183)
+        self.fVisualize.update_idletasks()
+
+        self.pvVisualize = None
+        self.Mesh = None
 
         self.lbManeuver = tk.Label(self.form, text = "Bảng chức năng", font = ("Times New Roman", 14, "bold"), bg = "#fff6e5", fg = "#833812")
         self.lbManeuver.place(x = 835, y = 152)
 
         self.fManeuver = tk.Frame(self.form, width = 365, height = 467, relief = "solid", borderwidth = 1, bg = "#ffffff")
         self.fManeuver.place(x = 825, y = 183)
-        self.vrSample = None
 
         self.mbModelView = tk.Menubutton(self.fManeuver, text = "Chọn mô hình", font = ("Times New Roman", 13, "bold"), width = 35, height = 1, bg = "#fffbdf", fg = "#833812", relief = "raised")
         self.mbModelView.place(x = 18, y = 20)
@@ -137,76 +144,176 @@ class VisualizationForm:
 
     def mnuSample01_Click(self):
         model_path = "data/models/Achroia_grisella_NeRF.obj"
-        mesh = trimesh.load(model_path)
-        self.vrSample = Viewer(self.fVisualize, mesh, width = 800, height = 467)
-        self.vrSample.pack(fill = "both", expand = True)
-        self.vrSample.animate = 0
+        self.Mesh = trimesh.load(model_path)
+        vertices = self.Mesh.vertices
+        faces = self.Mesh.faces
+        colors = self.Mesh.visual.vertex_colors[:, :3]
+
+        faces_pv = np.hstack([
+            np.full((faces.shape[0], 1), 3),
+            faces
+        ]).astype(np.int64)
+        self.Mesh = pv.PolyData(vertices, faces_pv)
+        self.Mesh.point_data["RGB"] = colors
+
+        self.pvVisualize = pv.Plotter()
+        self.pvVisualize.add_mesh(self.Mesh, scalars = "RGB", rgb = True)
+        self.pvVisualize.show(full_screen = True)
         self.btnReset.configure(state = "normal")
 
     def mnuSample02_Click(self):
         model_path = "data/models/Amblypelta_nitida_NeRF.obj"
-        mesh = trimesh.load(model_path)
-        self.vrSample = Viewer(self.fVisualize, mesh, width = 800, height = 467)
-        self.vrSample.pack(fill = "both", expand = True)
-        self.vrSample.animate = 0
+        self.Mesh = trimesh.load(model_path)
+        vertices = self.Mesh.vertices
+        faces = self.Mesh.faces
+        colors = self.Mesh.visual.vertex_colors[:, :3]
+
+        faces_pv = np.hstack([
+            np.full((faces.shape[0], 1), 3),
+            faces
+        ]).astype(np.int64)
+        self.Mesh = pv.PolyData(vertices, faces_pv)
+        self.Mesh.point_data["RGB"] = colors
+
+        self.pvVisualize = pv.Plotter()
+        self.pvVisualize.add_mesh(self.Mesh, scalars = "RGB", rgb = True)
+        self.pvVisualize.show(full_screen = True)
         self.btnReset.configure(state = "normal")
 
     def mnuSample03_Click(self):
         model_path = "data/models/Amphimallon_NeRF.obj"
-        mesh = trimesh.load(model_path)
-        self.vrSample = Viewer(self.fVisualize, mesh, width = 800, height = 467)
-        self.vrSample.pack(fill = "both", expand = True)
-        self.vrSample.animate = 0
+        self.Mesh = trimesh.load(model_path)
+        vertices = self.Mesh.vertices
+        faces = self.Mesh.faces
+        colors = self.Mesh.visual.vertex_colors[:, :3]
+
+        faces_pv = np.hstack([
+            np.full((faces.shape[0], 1), 3),
+            faces
+        ]).astype(np.int64)
+        self.Mesh = pv.PolyData(vertices, faces_pv)
+        self.Mesh.point_data["RGB"] = colors
+
+        self.pvVisualize = pv.Plotter()
+        self.pvVisualize.add_mesh(self.Mesh, scalars = "RGB", rgb = True)
+        self.pvVisualize.show()
         self.btnReset.configure(state = "normal")
 
     def mnuSample04_Click(self):
         model_path = "data/models/Cerambycidae_NeRF.obj"
-        mesh = trimesh.load(model_path)
-        self.vrSample = Viewer(self.fVisualize, mesh, width = 800, height = 467)
-        self.vrSample.pack(fill = "both", expand = True)
-        self.vrSample.animate = 0
+        self.Mesh = trimesh.load(model_path)
+        vertices = self.Mesh.vertices
+        faces = self.Mesh.faces
+        colors = self.Mesh.visual.vertex_colors[:, :3]
+
+        faces_pv = np.hstack([
+            np.full((faces.shape[0], 1), 3),
+            faces
+        ]).astype(np.int64)
+        self.Mesh = pv.PolyData(vertices, faces_pv)
+        self.Mesh.point_data["RGB"] = colors
+
+        self.pvVisualize = pv.Plotter()
+        self.pvVisualize.add_mesh(self.Mesh, scalars = "RGB", rgb = True)
+        self.pvVisualize.show(full_screen = True)
         self.btnReset.configure(state = "normal")
 
     def mnuSample05_Click(self):
         model_path = "data/models/Chlorocala_NeRF.obj"
-        mesh = trimesh.load(model_path)
-        self.vrSample = Viewer(self.fVisualize, mesh, width = 800, height = 467)
-        self.vrSample.pack(fill = "both", expand = True)
-        self.vrSample.animate = 0
+        self.Mesh = trimesh.load(model_path)
+        vertices = self.Mesh.vertices
+        faces = self.Mesh.faces
+        colors = self.Mesh.visual.vertex_colors[:, :3]
+
+        faces_pv = np.hstack([
+            np.full((faces.shape[0], 1), 3),
+            faces
+        ]).astype(np.int64)
+        self.Mesh = pv.PolyData(vertices, faces_pv)
+        self.Mesh.point_data["RGB"] = colors
+
+        self.pvVisualize = pv.Plotter()
+        self.pvVisualize.add_mesh(self.Mesh, scalars = "RGB", rgb = True)
+        self.pvVisualize.show(full_screen = True)
         self.btnReset.configure(state = "normal")
 
     def mnuSample06_Click(self):
         model_path = "data/models/Hemiptera_NeRF.obj"
-        mesh = trimesh.load(model_path)
-        self.vrSample = Viewer(self.fVisualize, mesh, width = 800, height = 467)
-        self.vrSample.pack(fill = "both", expand = True)
-        self.vrSample.animate = 0
+        self.Mesh = trimesh.load(model_path)
+        vertices = self.Mesh.vertices
+        faces = self.Mesh.faces
+        colors = self.Mesh.visual.vertex_colors[:, :3]
+
+        faces_pv = np.hstack([
+            np.full((faces.shape[0], 1), 3),
+            faces
+        ]).astype(np.int64)
+        self.Mesh = pv.PolyData(vertices, faces_pv)
+        self.Mesh.point_data["RGB"] = colors
+
+        self.pvVisualize = pv.Plotter()
+        self.pvVisualize.add_mesh(self.Mesh, scalars = "RGB", rgb = True)
+        self.pvVisualize.show(full_screen = True)
         self.btnReset.configure(state = "normal")
 
     def mnuSample07_Click(self):
         model_path = "data/models/Hypomeces_NeRF.obj"
-        mesh = trimesh.load(model_path)
-        self.vrSample = Viewer(self.fVisualize, mesh, width = 800, height = 467)
-        self.vrSample.pack(fill = "both", expand = True)
-        self.vrSample.animate = 0
+        self.Mesh = trimesh.load(model_path)
+        vertices = self.Mesh.vertices
+        faces = self.Mesh.faces
+        colors = self.Mesh.visual.vertex_colors[:, :3]
+
+        faces_pv = np.hstack([
+            np.full((faces.shape[0], 1), 3),
+            faces
+        ]).astype(np.int64)
+        self.Mesh = pv.PolyData(vertices, faces_pv)
+        self.Mesh.point_data["RGB"] = colors
+
+        self.pvVisualize = pv.Plotter()
+        self.pvVisualize.add_mesh(self.Mesh, scalars = "RGB", rgb = True)
+        self.pvVisualize.show(full_screen = True)
         self.btnReset.configure(state = "normal")
 
     def mnuSample08_Click(self):
         model_path = "data/models/Pyrrhocoris_NeRF.obj"
-        mesh = trimesh.load(model_path)
-        self.vrSample = Viewer(self.fVisualize, mesh, width = 800, height = 467)
-        self.vrSample.pack(fill = "both", expand = True)
-        self.vrSample.animate = 0
+        self.Mesh = trimesh.load(model_path)
+        vertices = self.Mesh.vertices
+        faces = self.Mesh.faces
+        colors = self.Mesh.visual.vertex_colors[:, :3]
+
+        faces_pv = np.hstack([
+            np.full((faces.shape[0], 1), 3),
+            faces
+        ]).astype(np.int64)
+        self.Mesh = pv.PolyData(vertices, faces_pv)
+        self.Mesh.point_data["RGB"] = colors
+
+        self.pvVisualize = pv.Plotter()
+        self.pvVisualize.add_mesh(self.Mesh, scalars = "RGB", rgb = True)
+        self.pvVisualize.show(full_screen = True)
         self.btnReset.configure(state = "normal")
 
     def btnOpen_Click(self):
         model_path = filedialog.askopenfilename(filetypes = [("Chọn một tập tin mô hình 3D", "*.obj *.ply")])
-        mesh = trimesh.load(model_path)
-        self.vrSample = Viewer(self.fVisualize, mesh, width = 800, height = 467)
-        self.vrSample.pack(fill = "both", expand = True)
-        self.vrSample.animate = 0
+        self.Mesh = trimesh.load(model_path)
+        vertices = self.Mesh.vertices
+        faces = self.Mesh.faces
+        colors = self.Mesh.visual.vertex_colors[:, :3]
+
+        faces_pv = np.hstack([
+            np.full((faces.shape[0], 1), 3),
+            faces
+        ]).astype(np.int64)
+        self.Mesh = pv.PolyData(vertices, faces_pv)
+        self.Mesh.point_data["RGB"] = colors
+
+        self.pvVisualize = pv.Plotter()
+        self.pvVisualize.add_mesh(self.Mesh, scalars = "RGB", rgb = True)
+        self.pvVisualize.show(full_screen = True)
         self.btnReset.configure(state = "normal")
 
     def btnReset_Click(self):
-        self.vrSample = None
+        self.pvVisualize = None
+        self.Mesh = None
         self.btnReset.configure(state = "disabled")

@@ -9,6 +9,8 @@ This is the source code for my graduation thesis. My name is Nguyen, an 4-year s
 ---
 🌟**INTRODUCTION**
 
+This study concentrates on researching the Machine Learning application in 3D insect modeling workflow, that has been utilized photogrammetry-based algorithms to construct high-quality 3D insect models. The main aims are using Neural Radiance Field in modeling stage with Instant-NGP framework and U-Net architecture for automatical image pre-processing. This source code is created to synthesize image pre-processing code and GUI program that denotes the main results of my thesis.
+
 ---
 📌**TABLE OF CONTENTS**
 
